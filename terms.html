@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="PAYNET 이용약관 — 서비스 목적, 책임의 한계, 금지행위 등 이용 조건." />
+    <title>이용약관 | PAYNET</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a class="logo" href="index.html">PAYNET</a>
+        <nav class="site-nav" aria-label="주요 메뉴">
+          <a href="index.html#calculator">계산기</a>
+          <a href="guides.html">가이드</a>
+          <a href="about.html">소개</a>
+          <a href="contact.html">문의</a>
+        </nav>
+      </div>
+    </header>
+    <main class="app page-content">
+      <header class="brand">
+        <p class="brand-mark">TERMS</p>
+        <h1>이용약관</h1>
+        <p class="brand-desc">PAYNET 서비스 이용과 관련한 기본 조건을 안내합니다.</p>
+        <p class="meta-line">시행일: 2026년 9월 28일</p>
+      </header>
+      <article class="content-block">
+        <h2>1. 목적</h2>
+        <p>본 약관은 연봉·세금·시급 계산 도구와 관련 콘텐츠의 이용 조건을 규정합니다.</p>
+      </article>
+      <article class="content-block">
+        <h2>2. 서비스의 성격</h2>
+        <p>서비스는 참고용 예상 계산 및 정보 제공을 목적으로 하며, 세무·법률·노무 전문 자문을 의미하지 않습니다.</p>
+      </article>
+      <article class="content-block">
+        <h2>3. 이용자의 책임</h2>
+        <ul class="content-list">
+          <li>입력값의 정확성과 결과 해석에 대한 최종 책임은 이용자에게 있습니다.</li>
+          <li>중요한 결정 전에는 근로계약서, 급여명세서 또는 전문가 확인을 권장합니다.</li>
+        </ul>
+      </article>
+      <article class="content-block">
+        <h2>4. 책임의 제한</h2>
+        <p>운영자는 결과의 정확성·완전성·최신성을 보장하지 않으며, 법령이 허용하는 범위에서 책임을 제한합니다.</p>
+      </article>
+      <article class="content-block">
+        <h2>5. 문의</h2>
+        <p>약관 관련 문의는 <a href="contact.html">문의 페이지</a>를 이용해 주세요.</p>
+      </article>
+    </main>
+    <footer class="site-footer">
+      <div class="site-footer-inner">
+        <p class="footer-brand">PAYNET 연봉 실수령액 계산기</p>
+        <nav class="footer-nav" aria-label="푸터 메뉴">
+          <a href="index.html">계산기</a>
+          <a href="guides.html">가이드</a>
+          <a href="about.html">소개</a>
+          <a href="terms.html">이용약관</a>
+          <a href="privacy.html">개인정보처리방침</a>
+          <a href="contact.html">문의</a>
+        </nav>
+        <p class="footer-copy">© <span id="year"></span> PAYNET. All rights reserved.</p>
+      </div>
+    </footer>
+    <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  </body>
+</html>

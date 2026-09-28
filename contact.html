@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="PAYNET 문의 — 계산기 오류 제보, 개선 제안, 개인정보 관련 요청." />
+    <title>문의 | PAYNET</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a class="logo" href="index.html">PAYNET</a>
+        <nav class="site-nav" aria-label="주요 메뉴">
+          <a href="index.html#calculator">계산기</a>
+          <a href="guides.html">가이드</a>
+          <a href="about.html">소개</a>
+          <a href="contact.html" aria-current="page">문의</a>
+        </nav>
+      </div>
+    </header>
+    <main class="app page-content">
+      <header class="brand">
+        <p class="brand-mark">CONTACT</p>
+        <h1>문의하기</h1>
+        <p class="brand-desc">계산 오류 제보, 기능 개선 제안, 개인정보 관련 요청이 있으시면 연락해 주세요.</p>
+      </header>
+      <article class="content-block">
+        <h2>연락 방법</h2>
+        <p>이메일: <a href="mailto:paynet.help@gmail.com">paynet.help@gmail.com</a></p>
+        <p class="hint">※ 실제 운영 이메일로 바꾼 뒤 배포하세요. 위 주소는 예시입니다.</p>
+        <ul class="content-list">
+          <li>이용 중인 브라우저와 기기</li>
+          <li>입력했던 연봉·부양가족·비과세액</li>
+          <li>기대했던 결과와 화면 결과</li>
+        </ul>
+      </article>
+      <article class="content-block">
+        <h2>답변 시간</h2>
+        <p>평일 기준 가능한 빠르게 회신하는 것을 목표로 합니다. 개별 세무 상담은 드리기 어렵습니다.</p>
+      </article>
+    </main>
+    <footer class="site-footer">
+      <div class="site-footer-inner">
+        <p class="footer-brand">PAYNET 연봉 실수령액 계산기</p>
+        <nav class="footer-nav" aria-label="푸터 메뉴">
+          <a href="index.html">계산기</a>
+          <a href="guides.html">가이드</a>
+          <a href="about.html">소개</a>
+          <a href="terms.html">이용약관</a>
+          <a href="privacy.html">개인정보처리방침</a>
+          <a href="contact.html">문의</a>
+        </nav>
+        <p class="footer-copy">© <span id="year"></span> PAYNET. All rights reserved.</p>
+      </div>
+    </footer>
+    <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  </body>
+</html>

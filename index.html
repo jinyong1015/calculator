@@ -3,7 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>연봉 실수령액 계산기</title>
+    <meta
+      name="description"
+      content="연봉 실수령액·세금·시급·부동산(중개수수료·양도소득세·대출이자) 계산기 — 예상 공제와 비용을 바로 확인하세요."
+    />
+    <title>연봉·세금·부동산 계산기 | PAYNET</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,120 +17,530 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="bg-grid" aria-hidden="true"></div>
-    <div class="bg-glow" aria-hidden="true"></div>
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a class="logo" href="index.html">PAYNET</a>
+        <nav class="site-nav" aria-label="주요 메뉴">
+          <a href="#calculator">계산기</a>
+          <a href="guides.html">가이드</a>
+          <a href="#faq">FAQ</a>
+          <a href="about.html">소개</a>
+          <a href="contact.html">문의</a>
+        </nav>
+      </div>
+    </header>
 
     <main class="app">
-      <header class="brand">
+      <header class="brand" id="calculator">
         <p class="brand-mark">PAYNET</p>
-        <h1>연봉 실수령액 계산기</h1>
+        <h1>연봉·세금·부동산 계산기</h1>
         <p class="brand-desc">
-          연봉을 입력하면 4대보험·소득세·지방세를 반영한 예상 실수령액을 바로
-          확인합니다.
+          실수령액·세금·시급뿐 아니라 중개수수료, 양도소득세, 대출이자까지
+          한곳에서 확인하세요. 참고용 예상 계산기입니다.
         </p>
       </header>
 
-      <section class="panel" aria-labelledby="input-title">
-        <h2 id="input-title" class="panel-title">연봉 입력</h2>
+      <div class="calc-category" role="tablist" aria-label="계산기 카테고리" id="tools">
+        <button type="button" class="category-btn is-active" data-category="salary" aria-selected="true">급여·세금</button>
+        <button type="button" class="category-btn" data-category="estate" aria-selected="false">부동산</button>
+      </div>
 
-        <label class="field" for="salary">
-          <span class="field-label">세전 연봉</span>
-          <div class="input-row">
-            <input
-              id="salary"
-              type="text"
-              inputmode="numeric"
-              autocomplete="off"
-              placeholder="예: 40,000,000"
-              value="40,000,000"
-            />
-            <span class="unit">원</span>
-          </div>
-        </label>
+      <div class="calc-tabs" role="tablist" aria-label="급여 계산기" id="salary-tabs" data-category-panel="salary">
+        <button type="button" class="calc-tab is-active" role="tab" id="tab-net" aria-selected="true" aria-controls="panel-net" data-tab="net">실수령액</button>
+        <button type="button" class="calc-tab" role="tab" id="tab-tax" aria-selected="false" aria-controls="panel-tax" data-tab="tax">근로소득세</button>
+        <button type="button" class="calc-tab" role="tab" id="tab-insure" aria-selected="false" aria-controls="panel-insure" data-tab="insure">4대보험</button>
+        <button type="button" class="calc-tab" role="tab" id="tab-hourly" aria-selected="false" aria-controls="panel-hourly" data-tab="hourly">시급계산기</button>
+      </div>
 
-        <div class="options">
-          <label class="field" for="dependents">
-            <span class="field-label">부양가족 수 (본인 포함)</span>
-            <select id="dependents">
-              <option value="1" selected>1명</option>
-              <option value="2">2명</option>
-              <option value="3">3명</option>
-              <option value="4">4명</option>
-              <option value="5">5명 이상</option>
-            </select>
-          </label>
+      <div class="calc-tabs" role="tablist" aria-label="부동산 계산기" id="estate-tabs" data-category-panel="estate" hidden>
+        <button type="button" class="calc-tab" role="tab" id="tab-broker" aria-selected="false" aria-controls="panel-broker" data-tab="broker">중개수수료</button>
+        <button type="button" class="calc-tab" role="tab" id="tab-cgt" aria-selected="false" aria-controls="panel-cgt" data-tab="cgt">양도소득세</button>
+        <button type="button" class="calc-tab" role="tab" id="tab-loan" aria-selected="false" aria-controls="panel-loan" data-tab="loan">대출이자</button>
+      </div>
 
-          <label class="field" for="nontaxable">
-            <span class="field-label">비과세액 (월)</span>
+      <div class="calc-panel is-active" role="tabpanel" id="panel-net" aria-labelledby="tab-net">
+        <section class="panel" aria-labelledby="input-title">
+          <h2 id="input-title" class="panel-title">연봉 입력</h2>
+          <label class="field" for="salary">
+            <span class="field-label">세전 연봉</span>
             <div class="input-row">
-              <input
-                id="nontaxable"
-                type="text"
-                inputmode="numeric"
-                autocomplete="off"
-                placeholder="200,000"
-                value="200,000"
-              />
+              <input id="salary" type="text" inputmode="numeric" autocomplete="off" placeholder="예: 40,000,000" value="40,000,000" />
               <span class="unit">원</span>
             </div>
           </label>
-        </div>
-
-        <p class="hint">
-          * 2025년 요율 기준 예상치이며, 회사·지역·공제 항목에 따라 실제와 다를
-          수 있습니다.
-        </p>
-      </section>
-
-      <section class="result" aria-live="polite" aria-labelledby="result-title">
-        <div class="result-hero">
-          <h2 id="result-title">예상 월 실수령액</h2>
-          <p class="net-amount" id="monthlyNet">0원</p>
-          <p class="annual-net">
-            연 실수령액 <strong id="annualNet">0원</strong>
-          </p>
-        </div>
-
-        <div class="summary-grid">
-          <div class="summary-item">
-            <span>월 세전</span>
-            <strong id="monthlyGross">0원</strong>
+          <div class="options">
+            <label class="field" for="dependents">
+              <span class="field-label">부양가족 수 (본인 포함)</span>
+              <select id="dependents">
+                <option value="1" selected>1명</option>
+                <option value="2">2명</option>
+                <option value="3">3명</option>
+                <option value="4">4명</option>
+                <option value="5">5명 이상</option>
+              </select>
+            </label>
+            <label class="field" for="nontaxable">
+              <span class="field-label">비과세액 (월)</span>
+              <div class="input-row">
+                <input id="nontaxable" type="text" inputmode="numeric" autocomplete="off" placeholder="200,000" value="200,000" />
+                <span class="unit">원</span>
+              </div>
+            </label>
           </div>
-          <div class="summary-item">
-            <span>총 공제</span>
-            <strong id="totalDeduction">0원</strong>
-          </div>
-        </div>
+          <p class="hint">* 2025년 요율 기준 예상치이며, 회사·지역·공제 항목에 따라 실제와 다를 수 있습니다.</p>
+        </section>
 
-        <ul class="breakdown" id="breakdown">
-          <li>
-            <span>국민연금</span>
-            <strong id="nationalPension">0원</strong>
-          </li>
-          <li>
-            <span>건강보험</span>
-            <strong id="healthInsurance">0원</strong>
-          </li>
-          <li>
-            <span>장기요양</span>
-            <strong id="longTermCare">0원</strong>
-          </li>
-          <li>
-            <span>고용보험</span>
-            <strong id="employmentInsurance">0원</strong>
-          </li>
-          <li>
-            <span>소득세</span>
-            <strong id="incomeTax">0원</strong>
-          </li>
-          <li>
-            <span>지방소득세</span>
-            <strong id="localTax">0원</strong>
-          </li>
+        <section class="result" aria-live="polite" aria-labelledby="result-title">
+          <div class="result-hero">
+            <h2 id="result-title">예상 월 실수령액</h2>
+            <p class="net-amount" id="monthlyNet">0원</p>
+            <p class="annual-net">연 실수령액 <strong id="annualNet">0원</strong></p>
+          </div>
+          <div class="summary-grid">
+            <div class="summary-item"><span>월 세전</span><strong id="monthlyGross">0원</strong></div>
+            <div class="summary-item"><span>총 공제</span><strong id="totalDeduction">0원</strong></div>
+          </div>
+          <ul class="breakdown">
+            <li><span>국민연금</span><strong id="nationalPension">0원</strong></li>
+            <li><span>건강보험</span><strong id="healthInsurance">0원</strong></li>
+            <li><span>장기요양</span><strong id="longTermCare">0원</strong></li>
+            <li><span>고용보험</span><strong id="employmentInsurance">0원</strong></li>
+            <li><span>소득세</span><strong id="incomeTax">0원</strong></li>
+            <li><span>지방소득세</span><strong id="localTax">0원</strong></li>
+          </ul>
+        </section>
+      </div>
+
+      <div class="calc-panel" role="tabpanel" id="panel-tax" aria-labelledby="tab-tax" hidden>
+        <section class="panel" aria-labelledby="tax-input-title">
+          <h2 id="tax-input-title" class="panel-title">근로소득세 계산</h2>
+          <label class="field" for="taxSalary">
+            <span class="field-label">세전 연봉</span>
+            <div class="input-row">
+              <input id="taxSalary" type="text" inputmode="numeric" autocomplete="off" placeholder="예: 40,000,000" value="40,000,000" />
+              <span class="unit">원</span>
+            </div>
+          </label>
+          <div class="options">
+            <label class="field" for="taxDependents">
+              <span class="field-label">부양가족 수 (본인 포함)</span>
+              <select id="taxDependents">
+                <option value="1" selected>1명</option>
+                <option value="2">2명</option>
+                <option value="3">3명</option>
+                <option value="4">4명</option>
+                <option value="5">5명 이상</option>
+              </select>
+            </label>
+            <label class="field" for="taxNontaxable">
+              <span class="field-label">비과세액 (월)</span>
+              <div class="input-row">
+                <input id="taxNontaxable" type="text" inputmode="numeric" autocomplete="off" placeholder="200,000" value="200,000" />
+                <span class="unit">원</span>
+              </div>
+            </label>
+          </div>
+          <p class="hint">* 근로소득공제·인적공제·사회보험료를 반영한 예상 원천징수세입니다.</p>
+        </section>
+        <section class="result" aria-live="polite">
+          <div class="result-hero">
+            <h2>예상 월 소득세</h2>
+            <p class="net-amount" id="taxMonthlyIncome">0원</p>
+            <p class="annual-net">지방소득세 포함 월 세금 <strong id="taxMonthlyTotal">0원</strong></p>
+          </div>
+          <div class="summary-grid">
+            <div class="summary-item"><span>연 소득세</span><strong id="taxAnnualIncome">0원</strong></div>
+            <div class="summary-item"><span>연 지방소득세</span><strong id="taxAnnualLocal">0원</strong></div>
+          </div>
+          <ul class="breakdown">
+            <li><span>과세표준 (연)</span><strong class="neutral" id="taxBase">0원</strong></li>
+            <li><span>근로소득공제 (연)</span><strong class="neutral" id="taxEarnedDeduction">0원</strong></li>
+            <li><span>인적공제 (연)</span><strong class="neutral" id="taxPersonalDeduction">0원</strong></li>
+            <li><span>실효세율 (지방세 포함)</span><strong class="neutral" id="taxEffectiveRate">0%</strong></li>
+          </ul>
+        </section>
+      </div>
+
+      <div class="calc-panel" role="tabpanel" id="panel-insure" aria-labelledby="tab-insure" hidden>
+        <section class="panel" aria-labelledby="insure-input-title">
+          <h2 id="insure-input-title" class="panel-title">4대보험 계산</h2>
+          <label class="field" for="insureSalary">
+            <span class="field-label">월 급여 (세전)</span>
+            <div class="input-row">
+              <input id="insureSalary" type="text" inputmode="numeric" autocomplete="off" placeholder="예: 3,333,333" value="3,333,333" />
+              <span class="unit">원</span>
+            </div>
+          </label>
+          <label class="field" for="insureNontaxable">
+            <span class="field-label">비과세액 (월)</span>
+            <div class="input-row">
+              <input id="insureNontaxable" type="text" inputmode="numeric" autocomplete="off" placeholder="200,000" value="200,000" />
+              <span class="unit">원</span>
+            </div>
+          </label>
+          <p class="hint">* 근로자 부담분 기준입니다. 회사 부담분은 별도로 표시됩니다.</p>
+        </section>
+        <section class="result" aria-live="polite">
+          <div class="result-hero">
+            <h2>근로자 부담 합계 (월)</h2>
+            <p class="net-amount" id="insureEmployeeTotal">0원</p>
+            <p class="annual-net">회사 부담 합계 <strong id="insureEmployerTotal">0원</strong></p>
+          </div>
+          <div class="summary-grid">
+            <div class="summary-item"><span>보험료 산정 기준</span><strong id="insureBase">0원</strong></div>
+            <div class="summary-item"><span>노사 합계 (월)</span><strong id="insureGrandTotal">0원</strong></div>
+          </div>
+          <ul class="breakdown">
+            <li><span>국민연금 (근로자)</span><strong id="insureNP">0원</strong></li>
+            <li><span>건강보험 (근로자)</span><strong id="insureHI">0원</strong></li>
+            <li><span>장기요양 (근로자)</span><strong id="insureLTC">0원</strong></li>
+            <li><span>고용보험 (근로자)</span><strong id="insureEI">0원</strong></li>
+            <li><span>국민연금 (회사)</span><strong class="neutral" id="insureNPCompany">0원</strong></li>
+            <li><span>건강보험+장기요양 (회사)</span><strong class="neutral" id="insureHealthCompany">0원</strong></li>
+            <li><span>고용보험 (회사)</span><strong class="neutral" id="insureEICompany">0원</strong></li>
+          </ul>
+        </section>
+      </div>
+
+      <div class="calc-panel" role="tabpanel" id="panel-hourly" aria-labelledby="tab-hourly" hidden>
+        <section class="panel" aria-labelledby="hourly-input-title">
+          <h2 id="hourly-input-title" class="panel-title">시급 계산</h2>
+          <div class="mode-toggle" role="group" aria-label="시급 계산 방식">
+            <button type="button" class="mode-btn is-active" data-hourly-mode="toSalary">시급 → 월급</button>
+            <button type="button" class="mode-btn" data-hourly-mode="toHourly">월급 → 시급</button>
+          </div>
+          <div id="hourlyToSalaryFields">
+            <label class="field" for="hourlyWage">
+              <span class="field-label">시급</span>
+              <div class="input-row">
+                <input id="hourlyWage" type="text" inputmode="numeric" autocomplete="off" placeholder="예: 10,030" value="10,030" />
+                <span class="unit">원</span>
+              </div>
+            </label>
+            <div class="options">
+              <label class="field" for="hoursPerDay">
+                <span class="field-label">하루 근무시간</span>
+                <div class="input-row">
+                  <input id="hoursPerDay" type="number" min="1" max="24" step="0.5" value="8" />
+                  <span class="unit">시간</span>
+                </div>
+              </label>
+              <label class="field" for="daysPerWeek">
+                <span class="field-label">주 근무일수</span>
+                <div class="input-row">
+                  <input id="daysPerWeek" type="number" min="1" max="7" step="1" value="5" />
+                  <span class="unit">일</span>
+                </div>
+              </label>
+            </div>
+            <label class="field" for="includeWeeklyHoliday">
+              <span class="field-label">주휴수당 포함</span>
+              <select id="includeWeeklyHoliday">
+                <option value="yes" selected>포함 (주 15시간 이상 가정)</option>
+                <option value="no">미포함</option>
+              </select>
+            </label>
+          </div>
+          <div id="hourlyToHourlyFields" hidden>
+            <label class="field" for="monthlyForHourly">
+              <span class="field-label">월 급여 (세전)</span>
+              <div class="input-row">
+                <input id="monthlyForHourly" type="text" inputmode="numeric" autocomplete="off" placeholder="예: 2,100,000" value="2,100,000" />
+                <span class="unit">원</span>
+              </div>
+            </label>
+            <label class="field" for="monthlyHours">
+              <span class="field-label">월 기준 근로시간</span>
+              <div class="input-row">
+                <input id="monthlyHours" type="number" min="1" max="400" step="1" value="209" />
+                <span class="unit">시간</span>
+              </div>
+            </label>
+            <p class="hint">* 통상임금 환산에서 흔히 쓰는 월 209시간을 기본값으로 둡니다.</p>
+          </div>
+        </section>
+        <section class="result" aria-live="polite">
+          <div class="result-hero">
+            <h2 id="hourlyResultTitle">예상 월급</h2>
+            <p class="net-amount" id="hourlyMainResult">0원</p>
+            <p class="annual-net" id="hourlySubResult">연봉 환산 0원</p>
+          </div>
+          <div class="summary-grid">
+            <div class="summary-item"><span id="hourlySummaryLabel1">주급</span><strong id="hourlySummaryValue1">0원</strong></div>
+            <div class="summary-item"><span id="hourlySummaryLabel2">월 근로시간</span><strong id="hourlySummaryValue2">0시간</strong></div>
+          </div>
+          <ul class="breakdown">
+            <li><span id="hourlyDetailLabel1">기본급 (월)</span><strong class="neutral" id="hourlyDetailValue1">0원</strong></li>
+            <li><span id="hourlyDetailLabel2">주휴수당 (월)</span><strong class="neutral" id="hourlyDetailValue2">0원</strong></li>
+            <li><span id="hourlyDetailLabel3">시급</span><strong class="neutral" id="hourlyDetailValue3">0원</strong></li>
+          </ul>
+        </section>
+      </div>
+
+
+      <div class="calc-panel" role="tabpanel" id="panel-broker" aria-labelledby="tab-broker" hidden>
+        <section class="panel" aria-labelledby="broker-title">
+          <h2 id="broker-title" class="panel-title">중개수수료 계산</h2>
+          <label class="field" for="brokerPrice">
+            <span class="field-label">거래금액</span>
+            <div class="input-row">
+              <input id="brokerPrice" type="text" inputmode="numeric" autocomplete="off" placeholder="예: 500,000,000" value="500,000,000" />
+              <span class="unit">원</span>
+            </div>
+          </label>
+          <div class="options">
+            <label class="field" for="brokerDeal">
+              <span class="field-label">거래 유형</span>
+              <select id="brokerDeal">
+                <option value="sale" selected>매매</option>
+                <option value="rent">임대차</option>
+              </select>
+            </label>
+            <label class="field" for="brokerType">
+              <span class="field-label">물건 유형</span>
+              <select id="brokerType">
+                <option value="house" selected>주택</option>
+                <option value="other">주택 외(상가 등)</option>
+              </select>
+            </label>
+          </div>
+          <label class="field" for="brokerVat">
+            <span class="field-label">부가세</span>
+            <select id="brokerVat">
+              <option value="include" selected>별도 부가세(+10%) 포함 표시</option>
+              <option value="exclude">수수료만 표시</option>
+            </select>
+          </label>
+          <p class="hint">* 법정 상한 요율 기준 참고치입니다. 실제 수수료는 협의로 달라질 수 있습니다.</p>
+        </section>
+        <section class="result" aria-live="polite">
+          <div class="result-hero">
+            <h2>예상 중개수수료 (상한)</h2>
+            <p class="net-amount" id="brokerFee">0원</p>
+            <p class="annual-net">부가세 포함 시 <strong id="brokerFeeVat">0원</strong></p>
+          </div>
+          <div class="summary-grid">
+            <div class="summary-item"><span>적용 요율</span><strong id="brokerRate">0%</strong></div>
+            <div class="summary-item"><span>거래금액</span><strong id="brokerDealAmount">0원</strong></div>
+          </div>
+          <ul class="breakdown">
+            <li><span>상한 수수료</span><strong id="brokerCap">0원</strong></li>
+            <li><span>부가세(10%)</span><strong class="neutral" id="brokerVatAmount">0원</strong></li>
+            <li><span>총액(수수료+부가세)</span><strong class="neutral" id="brokerTotal">0원</strong></li>
+          </ul>
+        </section>
+      </div>
+
+      <div class="calc-panel" role="tabpanel" id="panel-cgt" aria-labelledby="tab-cgt" hidden>
+        <section class="panel" aria-labelledby="cgt-title">
+          <h2 id="cgt-title" class="panel-title">양도소득세 계산</h2>
+          <label class="field" for="cgtSell">
+            <span class="field-label">양도가액</span>
+            <div class="input-row">
+              <input id="cgtSell" type="text" inputmode="numeric" autocomplete="off" placeholder="예: 800,000,000" value="800,000,000" />
+              <span class="unit">원</span>
+            </div>
+          </label>
+          <label class="field" for="cgtBuy">
+            <span class="field-label">취득가액</span>
+            <div class="input-row">
+              <input id="cgtBuy" type="text" inputmode="numeric" autocomplete="off" placeholder="예: 500,000,000" value="500,000,000" />
+              <span class="unit">원</span>
+            </div>
+          </label>
+          <label class="field" for="cgtExpense">
+            <span class="field-label">필요경비</span>
+            <div class="input-row">
+              <input id="cgtExpense" type="text" inputmode="numeric" autocomplete="off" placeholder="예: 10,000,000" value="10,000,000" />
+              <span class="unit">원</span>
+            </div>
+          </label>
+          <div class="options">
+            <label class="field" for="cgtYears">
+              <span class="field-label">보유기간(년)</span>
+              <div class="input-row">
+                <input id="cgtYears" type="number" min="0" max="50" step="1" value="5" />
+                <span class="unit">년</span>
+              </div>
+            </label>
+            <label class="field" for="cgtHomes">
+              <span class="field-label">주택 수</span>
+              <select id="cgtHomes">
+                <option value="1" selected>1주택</option>
+                <option value="2">2주택 이상</option>
+              </select>
+            </label>
+          </div>
+          <label class="field" for="cgtExempt">
+            <span class="field-label">1주택 비과세 가정</span>
+            <select id="cgtExempt">
+              <option value="no" selected>과세(일반세율 참고)</option>
+              <option value="yes">비과세 대상(세금 0)</option>
+            </select>
+          </label>
+          <p class="hint">* 고가주택·거주기간·중과 등 세부 요건은 반영하지 않은 단순 참고 계산입니다.</p>
+        </section>
+        <section class="result" aria-live="polite">
+          <div class="result-hero">
+            <h2>예상 양도소득세</h2>
+            <p class="net-amount" id="cgtTax">0원</p>
+            <p class="annual-net">지방소득세 포함 <strong id="cgtTaxTotal">0원</strong></p>
+          </div>
+          <div class="summary-grid">
+            <div class="summary-item"><span>양도차익</span><strong id="cgtGain">0원</strong></div>
+            <div class="summary-item"><span>과세표준</span><strong id="cgtBase">0원</strong></div>
+          </div>
+          <ul class="breakdown">
+            <li><span>장기보유특별공제</span><strong class="neutral" id="cgtLongDeduction">0원</strong></li>
+            <li><span>기본공제</span><strong class="neutral" id="cgtBasicDeduction">0원</strong></li>
+            <li><span>양도소득세</span><strong id="cgtIncomeTax">0원</strong></li>
+            <li><span>지방소득세(10%)</span><strong id="cgtLocalTax">0원</strong></li>
+          </ul>
+        </section>
+      </div>
+
+      <div class="calc-panel" role="tabpanel" id="panel-loan" aria-labelledby="tab-loan" hidden>
+        <section class="panel" aria-labelledby="loan-title">
+          <h2 id="loan-title" class="panel-title">대출이자 계산</h2>
+          <label class="field" for="loanPrincipal">
+            <span class="field-label">대출원금</span>
+            <div class="input-row">
+              <input id="loanPrincipal" type="text" inputmode="numeric" autocomplete="off" placeholder="예: 300,000,000" value="300,000,000" />
+              <span class="unit">원</span>
+            </div>
+          </label>
+          <div class="options">
+            <label class="field" for="loanRate">
+              <span class="field-label">연이자율</span>
+              <div class="input-row">
+                <input id="loanRate" type="number" min="0" max="30" step="0.01" value="3.5" />
+                <span class="unit">%</span>
+              </div>
+            </label>
+            <label class="field" for="loanYears">
+              <span class="field-label">상환기간</span>
+              <div class="input-row">
+                <input id="loanYears" type="number" min="1" max="50" step="1" value="30" />
+                <span class="unit">년</span>
+              </div>
+            </label>
+          </div>
+          <label class="field" for="loanMethod">
+            <span class="field-label">상환 방식</span>
+            <select id="loanMethod">
+              <option value="equalPayment" selected>원리금균등상환</option>
+              <option value="equalPrincipal">원금균등상환</option>
+              <option value="bullet">만기일시상환(이자만)</option>
+            </select>
+          </label>
+          <p class="hint">* 고정금리·중도상환수수료·보험료 등은 포함하지 않은 단순 계산입니다.</p>
+        </section>
+        <section class="result" aria-live="polite">
+          <div class="result-hero">
+            <h2 id="loanResultTitle">월 상환액</h2>
+            <p class="net-amount" id="loanMonthly">0원</p>
+            <p class="annual-net">총 이자 <strong id="loanTotalInterest">0원</strong></p>
+          </div>
+          <div class="summary-grid">
+            <div class="summary-item"><span>총 상환액</span><strong id="loanTotalPay">0원</strong></div>
+            <div class="summary-item"><span>상환 회차</span><strong id="loanMonths">0회</strong></div>
+          </div>
+          <ul class="breakdown">
+            <li><span>첫 달 이자</span><strong id="loanFirstInterest">0원</strong></li>
+            <li><span>첫 달 원금</span><strong class="neutral" id="loanFirstPrincipal">0원</strong></li>
+            <li><span>대출원금</span><strong class="neutral" id="loanPrincipalOut">0원</strong></li>
+          </ul>
+        </section>
+      </div>
+
+      <article class="content-block">
+        <h2>급여·세금 가이드 모음</h2>
+        <p>급여·세금뿐 아니라 부동산 비용도 계산할 수 있습니다. 실무에서 자주 묻는 주제는 가이드로 정리했습니다.</p>
+        <div class="guide-grid guide-grid-compact">
+          <a class="guide-card" href="guide-paystub.html"><span class="guide-card-tag">기초</span><h3>급여명세서 읽는 법</h3><p>지급·공제·비과세를 순서대로 확인하는 방법</p></a>
+          <a class="guide-card" href="guide-insurance.html"><span class="guide-card-tag">4대보험</span><h3>4대보험 한눈에 보기</h3><p>국민연금부터 산재까지, 누가 얼마나 부담하는지</p></a>
+          <a class="guide-card" href="guide-year-end-tax.html"><span class="guide-card-tag">세금</span><h3>연말정산 기초</h3><p>원천징수와 정산이 어떻게 연결되는지</p></a>
+          <a class="guide-card" href="guide-hourly.html"><span class="guide-card-tag">시급</span><h3>시급·주휴수당 환산</h3><p>시급을 월급으로, 월급을 시급으로 바꾸는 법</p></a>
+          <a class="guide-card" href="guide-negotiation.html"><span class="guide-card-tag">이직</span><h3>연봉 협상 체크리스트</h3><p>세전 숫자 뒤에 숨은 조건을 확인하는 질문</p></a>
+          <a class="guide-card" href="guide-examples.html"><span class="guide-card-tag">예시</span><h3>연봉대별 실수령 예시</h3><p>3,000만~8,000만 원대 참고 포인트</p></a>
+        </div>
+        <p>전체 목록은 <a href="guides.html">가이드 페이지</a>에서 볼 수 있습니다.</p>
+      </article>
+
+      <article class="content-block" id="guide">
+        <h2>실수령액은 어떻게 계산되나요?</h2>
+        <p>회사에서 말하는 연봉은 대부분 <strong>세전(총급여)</strong> 기준입니다. 통장에 실제로 입금되는 금액은 사회보험료와 세금을 뺀 <strong>실수령액(세후)</strong>입니다.</p>
+        <ol class="content-list">
+          <li><strong>월 세전 급여</strong> = 연봉 ÷ 12</li>
+          <li><strong>과세 대상 급여</strong> = 월 세전 − 비과세액(식대 등)</li>
+          <li><strong>4대보험</strong> = 국민연금 + 건강보험 + 장기요양 + 고용보험</li>
+          <li><strong>근로소득세·지방소득세</strong> = 공제·누진세율을 반영한 예상 세금</li>
+          <li><strong>월 실수령액</strong> = 월 세전 − (4대보험 + 세금)</li>
+        </ol>
+        <p>본 계산기는 일반적인 직장인 급여 구조를 가정한 <strong>참고용 예상치</strong>입니다.</p>
+      </article>
+
+      <article class="content-block">
+        <h2>월급에서 빠지는 4대보험과 세금</h2>
+        <h3>국민연금</h3>
+        <p>노후 소득을 위한 공적연금입니다. 근로자 부담분(약 4.5%)을 반영하며, 고소득에는 기준소득월액 상한이 적용됩니다.</p>
+        <h3>건강보험·장기요양</h3>
+        <p>의료비 보장을 위한 보험과, 건강보험료 비율로 부과되는 장기요양보험입니다.</p>
+        <h3>고용보험</h3>
+        <p>실업급여·육아휴직 등과 연결되는 보험으로, 근로자 부담 요율은 상대적으로 작습니다.</p>
+        <h3>소득세·지방소득세</h3>
+        <p>누진세 구조이며, 부양가족·비과세·연말정산에 따라 달라집니다. 지방소득세는 보통 소득세의 10%입니다.</p>
+      </article>
+
+      <article class="content-block" id="faq">
+        <h2>자주 묻는 질문 (FAQ)</h2>
+        <details class="faq-item" open>
+          <summary>계산기 결과가 실제 월급과 다를 수 있나요?</summary>
+          <p>네. 회사 급여 체계, 상여, 퇴직연금 본인 부담, 추가 공제에 따라 차이가 납니다. 정확한 금액은 급여명세서를 확인하세요.</p>
+        </details>
+        <details class="faq-item">
+          <summary>세전 연봉과 세후 연봉의 차이는?</summary>
+          <p>세전은 공제 전 총급여, 세후는 보험·세금 후 실제 수령에 가까운 금액입니다. 채용 공고 연봉은 대개 세전입니다.</p>
+        </details>
+        <details class="faq-item">
+          <summary>시급계산기 주휴수당은 무조건 포함되나요?</summary>
+          <p>옵션으로 선택합니다. 자세한 설명은 <a href="guide-hourly.html">시급·주휴수당 가이드</a>를 참고하세요.</p>
+        </details>
+        <details class="faq-item">
+          <summary>연말정산 환급액까지 계산하나요?</summary>
+          <p>월 단위 예상 원천징수에 초점을 둡니다. 개념은 <a href="guide-year-end-tax.html">연말정산 가이드</a>를 참고하세요.</p>
+        </details>
+      </article>
+
+      <article class="content-block">
+        <h2>사이트 운영 안내</h2>
+        <p>계산 도구와 교육용 가이드를 제공합니다. 광고가 게재될 수 있으며, 자세한 내용은 아래 문서를 확인하세요.</p>
+        <ul class="content-list">
+          <li><a href="about.html">사이트 소개</a></li>
+          <li><a href="terms.html">이용약관</a></li>
+          <li><a href="privacy.html">개인정보처리방침</a></li>
+          <li><a href="contact.html">문의하기</a></li>
         </ul>
-      </section>
+      </article>
     </main>
 
+    <footer class="site-footer">
+      <div class="site-footer-inner">
+        <p class="footer-brand">PAYNET 연봉 실수령액 계산기</p>
+        <p class="footer-note">본 사이트의 계산 결과는 참고용 예상치이며, 법적·세무 자문이 아닙니다.</p>
+        <nav class="footer-nav" aria-label="푸터 메뉴">
+          <a href="index.html">계산기</a>
+          <a href="guides.html">가이드</a>
+          <a href="about.html">소개</a>
+          <a href="terms.html">이용약관</a>
+          <a href="privacy.html">개인정보처리방침</a>
+          <a href="contact.html">문의</a>
+        </nav>
+        <p class="footer-copy">© <span id="year"></span> PAYNET. All rights reserved.</p>
+      </div>
+    </footer>
+
     <script src="script.js"></script>
+    <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
   </body>
 </html>

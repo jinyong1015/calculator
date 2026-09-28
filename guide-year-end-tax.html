@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="연말정산 기초 가이드 — 원천징수와 연말정산의 관계, 준비 서류, 환급·추가납부가 생기는 이유." />
+    <title>연말정산 기초 가이드 | PAYNET</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a class="logo" href="index.html">PAYNET</a>
+        <nav class="site-nav" aria-label="주요 메뉴">
+          <a href="index.html#calculator">계산기</a>
+          <a href="guides.html" aria-current="page">가이드</a>
+          <a href="about.html">소개</a>
+          <a href="contact.html">문의</a>
+        </nav>
+      </div>
+    </header>
+    <main class="app page-content">
+      <header class="brand">
+        <p class="brand-mark">GUIDE</p>
+        <h1>연말정산 기초 가이드</h1>
+        <p class="brand-desc">매달 떼는 세금과 연말정산이 어떻게 연결되는지 쉽게 설명합니다.</p>
+        <p class="meta-line">업데이트: 2026년 9월 · 읽는 시간 약 8분</p>
+      </header>
+      <article class="content-block">
+        <h2>원천징수와 연말정산의 차이</h2>
+        <p>회사는 급여를 줄 때 예상 소득세를 미리 떼어 납부합니다(원천징수). 한 해 공제 항목은 연말에 모아 최종 세금을 다시 계산하며, 미리 낸 세금이 많으면 환급, 적으면 추가 납부가 발생합니다.</p>
+      </article>
+      <article class="content-block">
+        <h2>실수령액 계산기와 연말정산</h2>
+        <p>PAYNET 결과는 월 단위 예상 원천징수에 가깝습니다. 확정 환급액까지 계산하지는 않지만, 생활비·이직 연봉 비교에는 도움이 됩니다.</p>
+      </article>
+      <article class="content-block">
+        <h2>준비하면 좋은 것들</h2>
+        <ul class="content-list">
+          <li>부양가족 확인 서류</li>
+          <li>의료비·교육비·기부금 내역</li>
+          <li>주택자금·월세 관련 자료(해당 시)</li>
+          <li>카드·현금영수증 사용 내역</li>
+        </ul>
+      </article>
+      <aside class="content-block related-box">
+        <h2>관련 가이드</h2>
+        <ul class="content-list">
+          <li><a href="guide-paystub.html">급여명세서 읽는 법</a></li>
+          <li><a href="index.html#tools">근로소득세 계산</a></li>
+        </ul>
+      </aside>
+    </main>
+    <footer class="site-footer">
+      <div class="site-footer-inner">
+        <p class="footer-brand">PAYNET 연봉 실수령액 계산기</p>
+        <nav class="footer-nav" aria-label="푸터 메뉴">
+          <a href="index.html">계산기</a>
+          <a href="guides.html">가이드</a>
+          <a href="about.html">소개</a>
+          <a href="terms.html">이용약관</a>
+          <a href="privacy.html">개인정보처리방침</a>
+          <a href="contact.html">문의</a>
+        </nav>
+        <p class="footer-copy">© <span id="year"></span> PAYNET. All rights reserved.</p>
+      </div>
+    </footer>
+    <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  </body>
+</html>

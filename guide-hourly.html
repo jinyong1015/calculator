@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="시급·주휴수당·월급 환산 가이드 — 시급을 월급으로 바꾸는 방법과 월 209시간 통상시급." />
+    <title>시급·주휴수당·월급 환산 | PAYNET 가이드</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a class="logo" href="index.html">PAYNET</a>
+        <nav class="site-nav" aria-label="주요 메뉴">
+          <a href="index.html#calculator">계산기</a>
+          <a href="guides.html" aria-current="page">가이드</a>
+          <a href="about.html">소개</a>
+          <a href="contact.html">문의</a>
+        </nav>
+      </div>
+    </header>
+    <main class="app page-content">
+      <header class="brand">
+        <p class="brand-mark">GUIDE</p>
+        <h1>시급·주휴수당·월급 환산</h1>
+        <p class="brand-desc">알바·계약직에서 자주 헷갈리는 시급과 월급의 관계를 계산 관점으로 풀어 봤습니다.</p>
+        <p class="meta-line">업데이트: 2026년 9월 · 읽는 시간 약 7분</p>
+      </header>
+      <article class="content-block">
+        <h2>시급만 보면 왜 부족할까요?</h2>
+        <p>시급은 시간당 금액이고, 생활비는 보통 한 달 단위입니다. 하루 근무시간, 주 근무일수, 주휴수당 여부에 따라 같은 시급이라도 월급 차이가 큽니다.</p>
+      </article>
+      <article class="content-block">
+        <h2>주휴수당이란?</h2>
+        <p>일정 조건을 충족하면 유급 휴일에 대해 지급되는 수당입니다. 계산기에서는 이해를 돕기 위해 주 15시간 이상 가정 옵션을 제공합니다. 실제 지급은 근로계약과 법령에 따릅니다.</p>
+      </article>
+      <article class="content-block">
+        <h2>월 209시간이 자주 나오는 이유</h2>
+        <p>주 40시간 근무와 유급주휴를 반영한 월 환산 근로시간으로 약 209시간이 실무에서 자주 사용됩니다. 통상시급 = 월급 ÷ 209 형태로 쓰이곤 합니다.</p>
+      </article>
+      <aside class="content-block related-box">
+        <h2>바로 계산하기</h2>
+        <p><a href="index.html#tools">시급계산기 탭</a>에서 시급↔월급을 확인해 보세요.</p>
+      </aside>
+    </main>
+    <footer class="site-footer">
+      <div class="site-footer-inner">
+        <p class="footer-brand">PAYNET 연봉 실수령액 계산기</p>
+        <nav class="footer-nav" aria-label="푸터 메뉴">
+          <a href="index.html">계산기</a>
+          <a href="guides.html">가이드</a>
+          <a href="about.html">소개</a>
+          <a href="terms.html">이용약관</a>
+          <a href="privacy.html">개인정보처리방침</a>
+          <a href="contact.html">문의</a>
+        </nav>
+        <p class="footer-copy">© <span id="year"></span> PAYNET. All rights reserved.</p>
+      </div>
+    </footer>
+    <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  </body>
+</html>

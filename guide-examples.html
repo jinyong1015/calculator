@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="연봉대별 예상 실수령 예시 — 3,000만 원부터 8,000만 원대까지 참고용 세후 감." />
+    <title>연봉대별 예상 실수령 예시 | PAYNET 가이드</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a class="logo" href="index.html">PAYNET</a>
+        <nav class="site-nav" aria-label="주요 메뉴">
+          <a href="index.html#calculator">계산기</a>
+          <a href="guides.html" aria-current="page">가이드</a>
+          <a href="about.html">소개</a>
+          <a href="contact.html">문의</a>
+        </nav>
+      </div>
+    </header>
+    <main class="app page-content">
+      <header class="brand">
+        <p class="brand-mark">GUIDE</p>
+        <h1>연봉대별 예상 실수령 예시</h1>
+        <p class="brand-desc">아래 표는 참고용 예시입니다. 본인 조건에 맞게 계산기에서 다시 확인해 보세요.</p>
+        <p class="meta-line">업데이트: 2026년 9월 · 읽는 시간 약 5분</p>
+      </header>
+      <article class="content-block">
+        <h2>예시 표</h2>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th scope="col">세전 연봉</th>
+                <th scope="col">월 세전(대략)</th>
+                <th scope="col">보는 포인트</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>3,000만 원</td><td>약 250만 원</td><td>사회보험 비중이 체감되기 쉬운 구간</td></tr>
+              <tr><td>4,000만 원</td><td>약 333만 원</td><td>사회 초년~경력 초반 비교에 자주 등장</td></tr>
+              <tr><td>5,000만 원</td><td>약 417만 원</td><td>세금·보험이 함께 늘어 세후 증가폭 확인 필요</td></tr>
+              <tr><td>6,000만 원</td><td>약 500만 원</td><td>누진 구간 영향이 커지기 쉬운 구간</td></tr>
+              <tr><td>8,000만 원</td><td>약 667만 원</td><td>세전 인상 대비 세후 비율이 낮아질 수 있음</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="hint">* 월 세전은 연봉÷12의 단순 환산입니다.</p>
+      </article>
+      <aside class="content-block related-box">
+        <h2>지금 바로 확인</h2>
+        <p><a href="index.html#calculator">실수령액 계산기 열기</a> · <a href="guides.html">다른 가이드 보기</a></p>
+      </aside>
+    </main>
+    <footer class="site-footer">
+      <div class="site-footer-inner">
+        <p class="footer-brand">PAYNET 연봉 실수령액 계산기</p>
+        <nav class="footer-nav" aria-label="푸터 메뉴">
+          <a href="index.html">계산기</a>
+          <a href="guides.html">가이드</a>
+          <a href="about.html">소개</a>
+          <a href="terms.html">이용약관</a>
+          <a href="privacy.html">개인정보처리방침</a>
+          <a href="contact.html">문의</a>
+        </nav>
+        <p class="footer-copy">© <span id="year"></span> PAYNET. All rights reserved.</p>
+      </div>
+    </footer>
+    <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  </body>
+</html>

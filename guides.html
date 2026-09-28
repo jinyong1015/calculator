@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="PAYNET 급여·세금 가이드 — 실수령액, 4대보험, 연말정산, 시급·주휴수당, 연봉 협상 체크리스트." />
+    <title>급여·세금 가이드 | PAYNET</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a class="logo" href="index.html">PAYNET</a>
+        <nav class="site-nav" aria-label="주요 메뉴">
+          <a href="index.html#calculator">계산기</a>
+          <a href="guides.html" aria-current="page">가이드</a>
+          <a href="about.html">소개</a>
+          <a href="contact.html">문의</a>
+        </nav>
+      </div>
+    </header>
+    <main class="app page-content">
+      <header class="brand">
+        <p class="brand-mark">GUIDES</p>
+        <h1>급여·세금 가이드</h1>
+        <p class="brand-desc">이직, 알바, 첫 월급, 연말정산 전에 읽기 좋게 정리한 실무형 안내 모음입니다.</p>
+      </header>
+      <section class="guide-grid" aria-label="가이드 목록">
+        <a class="guide-card" href="guide-paystub.html"><span class="guide-card-tag">기초</span><h2>급여명세서 읽는 법</h2><p>지급·공제·비과세 항목을 순서대로 확인하는 방법</p></a>
+        <a class="guide-card" href="guide-insurance.html"><span class="guide-card-tag">4대보험</span><h2>4대보험 한눈에 보기</h2><p>국민연금·건강·장기요양·고용보험의 역할과 부담</p></a>
+        <a class="guide-card" href="guide-year-end-tax.html"><span class="guide-card-tag">세금</span><h2>연말정산 기초 가이드</h2><p>원천징수와 연말정산이 어떻게 연결되는지</p></a>
+        <a class="guide-card" href="guide-hourly.html"><span class="guide-card-tag">시급</span><h2>시급·주휴수당·월급 환산</h2><p>시급을 월급으로 바꾸는 법과 209시간 기준</p></a>
+        <a class="guide-card" href="guide-negotiation.html"><span class="guide-card-tag">이직</span><h2>연봉 협상 전 세후 체크리스트</h2><p>세전 숫자만 보지 않도록 조건을 함께 보는 기준</p></a>
+        <a class="guide-card" href="guide-examples.html"><span class="guide-card-tag">예시</span><h2>연봉대별 예상 실수령 예시</h2><p>참고용 예시로 연봉대별 체감 차이를 확인</p></a>
+      </section>
+      <article class="content-block">
+        <h2>이 가이드는 누구를 위한 글인가요?</h2>
+        <p>사회 초년생, 이직 준비자, 아르바이트·계약직처럼 “내 통장에 얼마가 들어오는지”를 이해하고 싶은 분을 위한 글입니다. 모든 내용은 참고용이며, 중요한 결정 전에는 근로계약서와 급여명세서를 확인하세요.</p>
+        <p>바로 계산이 필요하면 <a href="index.html#calculator">계산기</a>로 이동하세요.</p>
+      </article>
+    </main>
+    <footer class="site-footer">
+      <div class="site-footer-inner">
+        <p class="footer-brand">PAYNET 연봉 실수령액 계산기</p>
+        <nav class="footer-nav" aria-label="푸터 메뉴">
+          <a href="index.html">계산기</a>
+          <a href="guides.html">가이드</a>
+          <a href="about.html">소개</a>
+          <a href="terms.html">이용약관</a>
+          <a href="privacy.html">개인정보처리방침</a>
+          <a href="contact.html">문의</a>
+        </nav>
+        <p class="footer-copy">© <span id="year"></span> PAYNET. All rights reserved.</p>
+      </div>
+    </footer>
+    <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  </body>
+</html>
