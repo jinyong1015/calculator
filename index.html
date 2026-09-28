@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>연봉 실수령액 계산기</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+    <div class="bg-glow" aria-hidden="true"></div>
+
+    <main class="app">
+      <header class="brand">
+        <p class="brand-mark">PAYNET</p>
+        <h1>연봉 실수령액 계산기</h1>
+        <p class="brand-desc">
+          연봉을 입력하면 4대보험·소득세·지방세를 반영한 예상 실수령액을 바로
+          확인합니다.
+        </p>
+      </header>
+
+      <section class="panel" aria-labelledby="input-title">
+        <h2 id="input-title" class="panel-title">연봉 입력</h2>
+
+        <label class="field" for="salary">
+          <span class="field-label">세전 연봉</span>
+          <div class="input-row">
+            <input
+              id="salary"
+              type="text"
+              inputmode="numeric"
+              autocomplete="off"
+              placeholder="예: 40,000,000"
+              value="40,000,000"
+            />
+            <span class="unit">원</span>
+          </div>
+        </label>
+
+        <div class="options">
+          <label class="field" for="dependents">
+            <span class="field-label">부양가족 수 (본인 포함)</span>
+            <select id="dependents">
+              <option value="1" selected>1명</option>
+              <option value="2">2명</option>
+              <option value="3">3명</option>
+              <option value="4">4명</option>
+              <option value="5">5명 이상</option>
+            </select>
+          </label>
+
+          <label class="field" for="nontaxable">
+            <span class="field-label">비과세액 (월)</span>
+            <div class="input-row">
+              <input
+                id="nontaxable"
+                type="text"
+                inputmode="numeric"
+                autocomplete="off"
+                placeholder="200,000"
+                value="200,000"
+              />
+              <span class="unit">원</span>
+            </div>
+          </label>
+        </div>
+
+        <p class="hint">
+          * 2025년 요율 기준 예상치이며, 회사·지역·공제 항목에 따라 실제와 다를
+          수 있습니다.
+        </p>
+      </section>
+
+      <section class="result" aria-live="polite" aria-labelledby="result-title">
+        <div class="result-hero">
+          <h2 id="result-title">예상 월 실수령액</h2>
+          <p class="net-amount" id="monthlyNet">0원</p>
+          <p class="annual-net">
+            연 실수령액 <strong id="annualNet">0원</strong>
+          </p>
+        </div>
+
+        <div class="summary-grid">
+          <div class="summary-item">
+            <span>월 세전</span>
+            <strong id="monthlyGross">0원</strong>
+          </div>
+          <div class="summary-item">
+            <span>총 공제</span>
+            <strong id="totalDeduction">0원</strong>
+          </div>
+        </div>
+
+        <ul class="breakdown" id="breakdown">
+          <li>
+            <span>국민연금</span>
+            <strong id="nationalPension">0원</strong>
+          </li>
+          <li>
+            <span>건강보험</span>
+            <strong id="healthInsurance">0원</strong>
+          </li>
+          <li>
+            <span>장기요양</span>
+            <strong id="longTermCare">0원</strong>
+          </li>
+          <li>
+            <span>고용보험</span>
+            <strong id="employmentInsurance">0원</strong>
+          </li>
+          <li>
+            <span>소득세</span>
+            <strong id="incomeTax">0원</strong>
+          </li>
+          <li>
+            <span>지방소득세</span>
+            <strong id="localTax">0원</strong>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
